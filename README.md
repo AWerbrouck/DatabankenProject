@@ -2,7 +2,7 @@
 
 TODO
 ---------------------------------------------
-- [ ] Relaties toevoegen in het eerd 
-- [ ] dubbele lijnen toevoegen in het eerd
-- [ ] Beschrijving in eerd
+- [X] Relaties toevoegen in het eerd 
+- [X] Dubbele lijnen toevoegen in het eerd
+- [ ] Functionele beschrijving in eerd
 - [ ] Logisch ontwerp maken 
