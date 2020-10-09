@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-10-09T10:40:03.982Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36" etag="bFKUkZ3JBwW_E9s9UPYt" version="13.7.9" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2020-10-09T10:45:24.213Z" agent="5.0 (X11)" etag="CFNj1wu0HUoHEqOXjxyz" version="13.7.9" type="github" pages="2">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
-    <mxGraphModel dx="1360" dy="806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
+    <mxGraphModel dx="2884" dy="1109" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -302,7 +302,7 @@
         <mxCell id="RP7sTy8QXj0htjFPKJnL-135" value="regio" style="ellipse;whiteSpace=wrap;html=1;align=center;" parent="RP7sTy8QXj0htjFPKJnL-157" vertex="1">
           <mxGeometry x="867.4782608695651" y="60.00000000000001" width="100.86956521739131" height="40.00000000000001" as="geometry" />
         </mxCell>
-        <mxCell id="RP7sTy8QXj0htjFPKJnL-136" value="openingstijd" style="ellipse;whiteSpace=wrap;html=1;align=center;" parent="RP7sTy8QXj0htjFPKJnL-157" vertex="1">
+        <mxCell id="RP7sTy8QXj0htjFPKJnL-136" value="openingstijd" style="ellipse;shape=doubleEllipse;margin=3;whiteSpace=wrap;html=1;align=center;" parent="RP7sTy8QXj0htjFPKJnL-157" vertex="1">
           <mxGeometry x="867.4782608695651" y="140.00000000000003" width="100.86956521739131" height="40.00000000000001" as="geometry" />
         </mxCell>
         <mxCell id="RP7sTy8QXj0htjFPKJnL-137" value="toegankelijkheidsinfo" style="ellipse;whiteSpace=wrap;html=1;align=center;" parent="RP7sTy8QXj0htjFPKJnL-157" vertex="1">
