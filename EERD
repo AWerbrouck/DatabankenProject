@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-10-09T10:54:53.861Z" agent="5.0 (X11)" etag="MpYggftVe76ysMZEMNs1" version="13.7.9" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2020-10-09T10:56:34.677Z" agent="5.0 (X11)" etag="nYAnxIs9AC7PhF1baT08" version="13.7.9" type="github" pages="2">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="2884" dy="1109" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -518,7 +518,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="JFYVQZVB4b6DXwNqm_LQ-7" value="Note" style="shape=note;size=20;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="JFYVQZVB4b6DXwNqm_LQ-7" value="&lt;div&gt;FUNCTIONELE BESCHRIJVING&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;size=20;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="10" y="210" width="280" height="300" as="geometry" />
         </mxCell>
       </root>
