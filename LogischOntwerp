@@ -33,3 +33,18 @@ Persoon(  Email:varchar,
           Achternaam:varchar)
           
 Primaire Sleutel: {Email}
+
+
+Hotel(  Beschrijving:varchar (NULL),
+        Sterren:varchar (NULL),
+        MinPrijs:integer (NULL),
+        Email:varchar (NULL),
+        HotelID:integer,
+        Naam:varchar,
+        Regio:varchar,
+        Gemeente:integer,
+        Postcode:integer,
+        Huisnummer:integer,
+        Straat:varchar)
+        
+Primaire Sleutel: {HotelID} 
