@@ -1,7 +1,7 @@
 
 ToeristischeActiviteit( Regio:varchar,
                         Type:varchar,
-                        OpeningstijdID:integer,
+                        O_ID:integer,
                         PrijsPerPersoon:integer,
                         Straat:varchar (NULL),
                         Postcode:integer,
@@ -15,18 +15,18 @@ ToeristischeActiviteit( Regio:varchar,
     Primaire Sleutel: {Postcode, Naam}              
                         
                         
-    Openingstijd( OpeningstijdID:Integer,
+    Openingstijd( O_ID:Integer,
                 Eindtijd:Integer,
                 Starttijd:Integer,
                 Datum:Date)
               
-        Primaire Sleutel: {OpeningstijdID}
+        Primaire Sleutel: {O_ID}
 
 
-    Toegankelijkheidsinfo(  ToegankelijkheidsinfoID:integer,
+    Toegankelijkheidsinfo(  T_ID:integer,
                             AANVULLING NODIG)
 
-        Primaire Sleutel: {ToegankelijkheidsinfoID}
+        Primaire Sleutel: {T_ID}
 
 
 
@@ -50,13 +50,13 @@ Hotel(  Beschrijving:varchar (NULL),
         Huisnummer:integer,
         Straat:varchar)
         
-    Primaire Sleutel: {HotelID} 
+    Primaire Sleutel: {H_ID} 
 
 #relaties
 
 Persoon_ToeristischeActiviteit( PersoonsEmail:varchar,
-                                ToeristischeActiviteitID:varchar)
-    Primaire Sleutel: {PersoonsEmail, ToeristischeActiviteitID}
+                                T_ID:varchar)
+    Primaire Sleutel: {PersoonsEmail, T_ID}
     Vreemde Sleutel:  ({PersoonsEmail -> persoon{email}},
                        {ToeristischeActiviteitID -> ToeristischeActiviteit{ AANVULLING NODIG }})
 
@@ -68,9 +68,9 @@ persoon_Hotel( PersoonsEmail:varchar,
     Vreemde Sleutel:  ({PersoonsEmail -> persoon{email}},
                        {hotel!!!!!}
 
- Hotel_ToeristischeActiviteit(!!!,ToeristischeActiviteitID:varchar)      
-    Primaire Sleutel: {hotel!!!, ToeristischeActiviteitID}
+ Hotel_ToeristischeActiviteit(!!!,T_ID:varchar)      
+    Primaire Sleutel: {hotel!!!, T_ID}
     Vreemde Sleutel:  ({!!! -> !!!{!!!}},
-                       {ToeristischeActiviteitID -> ToeristischeActiviteit{ AANVULLING NODIG }})
+                       {T_ID -> ToeristischeActiviteit{ AANVULLING NODIG }})
 
         
