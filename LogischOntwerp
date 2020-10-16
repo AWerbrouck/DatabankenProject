@@ -75,8 +75,8 @@ persoon_Hotel( PersoonsEmail:varchar,
 
 
 Hotel_ToeristischeActiviteit( H_ID:integer,
-                               T_ID:integer,
-                               Procen:real)      
+                              T_ID:integer,
+                              Procen:real)      
     Primaire Sleutel: {H_ID, T_ID}
     Vreemde Sleutel:  ({H_ID-> Hotel{H_ID}},
                        {T_ID -> ToeristischeActiviteit{Postcode, Naam}})
