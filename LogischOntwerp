@@ -63,7 +63,11 @@ Persoon_ToeristischeActiviteit( PersoonsEmail:varchar,
 
 
 persoon_Hotel( PersoonsEmail:varchar,
-               Hotel!!!! )
+               HotelID:varchar,
+               TijdstipBoeking:timestamp,
+               Aantal:integer,
+               Begin:timestamp,
+               Eind:timestamp)
     Primaire Sleutel: {PersoonsEmail, hotel !!!!!}
     Vreemde Sleutel:  ({PersoonsEmail -> persoon{email}},
                        {hotel!!!!!}
