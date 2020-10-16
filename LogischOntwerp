@@ -15,10 +15,10 @@ ToeristischeActiviteit( Regio:varchar,
     Primaire Sleutel: {Postcode, Naam}              
                         
                         
-    Openingstijd( O_ID:Integer,
-                Eindtijd:Integer,
-                Starttijd:Integer,
-                Datum:Date)
+    Openingstijd( O_ID:integer,
+                  Eindtijd:time,
+                  Starttijd:time,
+                  Datum:date)
               
         Primaire Sleutel: {O_ID}
 
