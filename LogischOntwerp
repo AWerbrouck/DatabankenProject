@@ -1,0 +1,35 @@
+ToeristischeActiviteit( Regio:varchar,
+                        Type:varchar,
+                        OpeningstijdID:integer,
+                        PrijsPerPersoon:integer,
+                        Straat:varchar (NULL),
+                        Postcode:integer,
+                        Gemeente:varchar,
+                        Huisnummer:integer (NULL),
+                        Beschrijving:varchar (NULL),
+                        Website:varchar (NULL),
+                        Tel:varchar (NULL),
+                        ToegankelijkheidsinfoID:integer)
+
+Primaire Sleutel: {Postcode, Naam}              
+                        
+                        
+Openingstijd( OpeningstijdID:Integer,
+              Eindtijd:Integer,
+              Starttijd:Integer,
+              Datum:Date)
+              
+Primaire Sleutel: {OpeningstijdID}
+
+
+Toegankelijkheidsinfo(  ToegankelijkheidsinfoID:integer,
+                        AANVULLING NODIG)
+
+Primaire Sleutel: {ToegankelijkheidsinfoID}
+
+
+Persoon(  Email:varchar,
+          Voornaam:varchar,
+          Achternaam:varchar)
+          
+Primaire Sleutel: {Email}
