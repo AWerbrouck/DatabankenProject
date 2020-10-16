@@ -1,3 +1,4 @@
+
 ToeristischeActiviteit( Regio:varchar,
                         Type:varchar,
                         OpeningstijdID:integer,
@@ -11,28 +12,30 @@ ToeristischeActiviteit( Regio:varchar,
                         Tel:varchar (NULL),
                         ToegankelijkheidsinfoID:integer)
 
-Primaire Sleutel: {Postcode, Naam}              
+    Primaire Sleutel: {Postcode, Naam}              
                         
                         
-Openingstijd( OpeningstijdID:Integer,
-              Eindtijd:Integer,
-              Starttijd:Integer,
-              Datum:Date)
+    Openingstijd( OpeningstijdID:Integer,
+                Eindtijd:Integer,
+                Starttijd:Integer,
+                Datum:Date)
               
-Primaire Sleutel: {OpeningstijdID}
+        Primaire Sleutel: {OpeningstijdID}
 
 
-Toegankelijkheidsinfo(  ToegankelijkheidsinfoID:integer,
-                        AANVULLING NODIG)
+    Toegankelijkheidsinfo(  ToegankelijkheidsinfoID:integer,
+                            AANVULLING NODIG)
 
-Primaire Sleutel: {ToegankelijkheidsinfoID}
+        Primaire Sleutel: {ToegankelijkheidsinfoID}
+
 
 
 Persoon(  Email:varchar,
           Voornaam:varchar,
           Achternaam:varchar)
           
-Primaire Sleutel: {Email}
+    Primaire Sleutel: {Email}
+
 
 
 Hotel(  Beschrijving:varchar (NULL),
@@ -47,4 +50,4 @@ Hotel(  Beschrijving:varchar (NULL),
         Huisnummer:integer,
         Straat:varchar)
         
-Primaire Sleutel: {HotelID} 
+    Primaire Sleutel: {HotelID} 
