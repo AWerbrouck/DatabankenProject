@@ -57,7 +57,7 @@ Hotel(  Beschrijving:varchar (NULL),
 Persoon_ToeristischeActiviteit( PersoonsEmail:varchar,
                                 T_ID:integer)
     Primaire Sleutel: {PersoonsEmail, T_ID}
-    Vreemde Sleutel:  ({PersoonsEmail -> Persoon{email}},
+    Vreemde Sleutel:  ({PersoonsEmail -> Persoon{Email}},
                        {T_ID -> ToeristischeActiviteit{Postcode, Naam}})
 
 
@@ -69,10 +69,12 @@ persoon_Hotel( PersoonsEmail:varchar,
                Begin:timestamp,
                Eind:timestamp)
     Primaire Sleutel: {PersoonsEmail, H_ID}
-    Vreemde Sleutel:  ({PersoonsEmail -> Persoon{email}},
+    Vreemde Sleutel:  ({PersoonsEmail -> Persoon{Email}},
                        {H_ID -> Hotel{H_ID}}
 
- Hotel_ToeristischeActiviteit( H_ID:integer,
+
+
+Hotel_ToeristischeActiviteit( H_ID:integer,
                                T_ID:integer,
                                Procen:real)      
     Primaire Sleutel: {H_ID, T_ID}
