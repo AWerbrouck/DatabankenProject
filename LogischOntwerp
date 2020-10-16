@@ -51,3 +51,16 @@ Hotel(  Beschrijving:varchar (NULL),
         Straat:varchar)
         
     Primaire Sleutel: {HotelID} 
+
+#relaties
+
+Persoon_ToeristischeActiviteit( PersoonsEmail:varchar,
+                                ToeristischeActiviteitID)
+    Primaire Sleutel: {PersoonsEmail, ToeristischeActiviteitID}
+    Vreemde Sleutel:  ({PersoonsEmail -> persoon{email}},
+                       {ToeristischeActiviteitID -> ToeristischeActiviteit{ AANVULLING NODIG }})
+
+
+
+persoon_Hotel( PersoonsEmail:varchar,
+               Hotel )
