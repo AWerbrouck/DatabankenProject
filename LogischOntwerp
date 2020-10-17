@@ -16,7 +16,6 @@ ToeristischeActiviteit( Regio:varchar,
     Primaire Sleutel: {Postcode, Naam}              
     Not Null: Regio, Type, O_ID, PrijsPerPersoon, Gemeente, ToegankelijkheidsinfoID
 
-
     
 
 
