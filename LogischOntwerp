@@ -3,18 +3,23 @@ ToeristischeActiviteit( Regio:varchar,
                         Type:varchar,
                         O_ID:integer,
                         PrijsPerPersoon:integer,
-                        Straat:varchar (NULL),
+                        Straat:varchar,
                         Postcode:integer,
+                        Naam:varchar,
                         Gemeente:varchar,
-                        Huisnummer:integer (NULL),
-                        Beschrijving:varchar (NULL),
-                        Website:varchar (NULL),
-                        Tel:varchar (NULL),
+                        Huisnummer:integer,
+                        Beschrijving:varchar,
+                        Website:varchar,
+                        Tel:varchar,
                         ToegankelijkheidsinfoID:integer)
 
     Primaire Sleutel: {Postcode, Naam}              
-                        
-                        
+    Not Null: Regio, Type, O_ID, PrijsPerPersoon, Gemeente, ToegankelijkheidsinfoID
+
+
+    
+
+
     Openingstijd( O_ID:integer,
                   Eindtijd:time,
                   Starttijd:time,
@@ -38,10 +43,10 @@ Persoon(  Email:varchar,
 
 
 
-Hotel(  Beschrijving:varchar (NULL),
-        Sterren:varchar (NULL),
-        MinPrijs:integer (NULL),
-        Email:varchar (NULL),
+Hotel(  Beschrijving:varchar,
+        Sterren:varchar,
+        MinPrijs:integer,
+        Email:varchar,
         HotelID:integer,
         Naam:varchar,
         Regio:varchar,
