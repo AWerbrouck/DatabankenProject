@@ -40,7 +40,7 @@ Persoon(  Email:varchar,
           Achternaam:varchar)
           
     Primaire Sleutel: {Email}
-
+    Not Null: Voornaam Achternaam
 
 
 Hotel(  Beschrijving:varchar,
@@ -56,7 +56,7 @@ Hotel(  Beschrijving:varchar,
         Straat:varchar)
         
     Primaire Sleutel: {H_ID} 
-
+    Not Null: Naam, Regio, Gemeente, Postcode, Huisnummer, Straat
 #relaties
 
 Persoon_ToeristischeActiviteit( PersoonsEmail:varchar,
