@@ -83,5 +83,4 @@ Hotel_ToeristischeActiviteit( H_ID:integer,
     Primaire Sleutel: {H_ID, T_ID}
     Vreemde Sleutel:  ({H_ID-> Hotel{H_ID}},
                        {T_ID -> ToeristischeActiviteit{Postcode, Naam}})
-
-        
+TODO: functionele beschrijving invoegen in logisch ontwerp
