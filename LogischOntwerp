@@ -28,7 +28,7 @@ ToeristischeActiviteit( Regio:varchar,
         Check: Starttijd > Eindtijd
 
     Toegankelijkheidsinfo(  T_ID:integer,
-                            //TODO: AANVULLING NODIG)
+                            //TODO: AANVULLING NODIresrG)
 
         Primaire Sleutel: {T_ID}
 
