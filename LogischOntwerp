@@ -1,6 +1,6 @@
 
 ToeristischeActiviteit( Regio:varchar,
-                        Type:varchar,
+                        TypeActiviteit:varchar,
                         O_ID:integer,
                         PrijsPerPersoon:integer,
                         Straat:varchar,
@@ -11,10 +11,10 @@ ToeristischeActiviteit( Regio:varchar,
                         Beschrijving:varchar,
                         Website:varchar,
                         Tel:varchar,
-                        ToegankelijkheidsinfoID:integer)
+                        T_ID:integer)
 
     Primaire Sleutel: {Postcode, Naam}              
-    Not Null: Regio, Type, O_ID, PrijsPerPersoon, Gemeente, ToegankelijkheidsinfoID
+    Not Null: Regio, TypeActiviteit, O_ID, PrijsPerPersoon, Gemeente, T_ID
 
     
 
@@ -22,15 +22,24 @@ ToeristischeActiviteit( Regio:varchar,
     Openingstijd( O_ID:integer,
                   Eindtijd:time,
                   Starttijd:time,
-                  Datum:date)
+                  Datum:date
+                  Postcode:integer,
+                  Naam:varchar)
               
         Primaire Sleutel: {O_ID}
+        Foreign Key: {Postcode, Naam} References ToeristischeActiviteit
         Check: Starttijd > Eindtijd
+        
+        NOT NULL: Postcode, Naam
 
     Toegankelijkheidsinfo(  T_ID:integer,
-                            //TODO: AANVULLING NODIresrG)
+                            Postcode:integer,
+                            Naam:varchar,
+                            Info:varchar)
 
         Primaire Sleutel: {T_ID}
+        Foreign Key: {Postcode, Naam} References ToeristischeActiviteit
+        NOT NULL: T_ID, Postcode, Naam, Info
 
 
 
@@ -46,7 +55,7 @@ Hotel(  Beschrijving:varchar,
         Sterren:varchar,
         MinPrijs:integer,
         Email:varchar,
-        HotelID:integer,
+        H_ID:integer,
         Naam:varchar,
         Regio:varchar,
         Gemeente:integer,
