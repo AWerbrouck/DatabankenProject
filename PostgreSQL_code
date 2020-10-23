@@ -42,3 +42,25 @@ CONSTRAINT fk_ToeristischeActiviteit
 FOREIGN KEY(Postcode, Naam)
 REFERENCES ToeristischeActiviteit(Postcode, Naam)
 );
+
+CREATE TABLE Persoon(
+Email varchar,
+Voornaam varchar NOT NULL,
+Achternaam varchar NOT NULL,
+PRIMARY KEY(Email)
+);
+
+CREATE TABLE Hotel(
+Beschrijving varchar,
+Sterren varchar,
+MinPrijs integer,
+Email varchar,
+H_ID integer,
+Naam varchar NOT NULL,
+Regio varchar NOT NULL,
+Gemeente varchar NOT NULL,
+Postcode integer NOT NULL,
+Huisnummer integer NOT NULL,
+Straat varchar NOT NULL,
+PRIMARY KEY(H_ID)
+);
