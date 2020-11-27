@@ -48,7 +48,14 @@ CREATE TABLE inschrijving
 	aantal       integer,
 	bevestigd    boolean,
 	tijdstip     timestamp,
-	PRIMARY KEY (emailpersoon, postcode, naam)
+	PRIMARY KEY (emailpersoon, postcode, naam),
+	CONSTRAINT fk_toeristischeactiviteit
+		FOREIGN KEY (postcode, naam)
+			REFERENCES ToeristischeActiviteit (postcode, activiteitnaam),
+	CONSTRAINT fk_persoon
+		FOREIGN KEY (emailpersoon)
+			REFERENCES Persoon (email)
+
 );
 
 CREATE TABLE boekingen
@@ -59,16 +66,28 @@ CREATE TABLE boekingen
 	begin        timestamp,
 	eind         timestamp,
 	aantal       integer,
-	PRIMARY KEY (emailpersoon, hotel_id)
+	PRIMARY KEY (emailpersoon, hotel_id),
+	CONSTRAINT fk_hotel
+		FOREIGN KEY (hotel_id)
+			REFERENCES Hotel (H_ID),
+	CONSTRAINT fk_persoon
+		FOREIGN KEY (emailpersoon)
+			REFERENCES Persoon (email)
 );
 
 CREATE TABLE kortingen
 (
 	activiteitnaam      varchar,
 	activiteit_postcode varchar,
-	hotelid             varchar,
+	hotel_id             varchar,
 	percentage_korting  varchar,
-	PRIMARY KEY (activiteitnaam, activiteit_postcode, hotelid)
+	PRIMARY KEY (activiteitnaam, activiteit_postcode, hotel_id),
+	CONSTRAINT fk_hotel
+		FOREIGN KEY (hotel_id)
+			REFERENCES Hotel (H_ID),
+	CONSTRAINT fk_toeristischeactiviteit
+		FOREIGN KEY (activiteitnaam, activiteit_postcode)
+			REFERENCES ToeristischeActiviteit (activiteitnaam, postcode)
 
 );
 
