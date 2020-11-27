@@ -5,14 +5,14 @@ CREATE TABLE ToeristischeActiviteit
 	openingstijd_ID           integer NOT NULL,
 	PrijsPerPersoon           integer NOT NULL,
 	straat                    varchar,
-	postcode                  integer,
+	postcode                  varchar,
 	activiteitnaam            varchar,
 	gemeente                  VARCHAR NOT NULL,
-	huisnummer                integer,
+	huisnummer                varchar,
 	beschrijving              varchar,
 	activiteit_website        varchar,
 	activiteit_telefoonnummer varchar,
-	toegankelijkheids_ID      integer NOT NULL,
+	toegankelijkheids_ID      varchar NOT NULL,
 	PRIMARY KEY (postcode, activiteitnaam)
 );
 
@@ -30,12 +30,12 @@ CREATE TABLE Hotel
 	Sterren      varchar,
 	MinPrijs     integer,
 	Email        varchar,
-	H_ID         integer,
+	H_ID         varchar,
 	Naam         varchar NOT NULL,
 	Regio        varchar NOT NULL,
 	Gemeente     varchar NOT NULL,
-	Postcode     integer NOT NULL,
-	Huisnummer   integer NOT NULL,
+	Postcode     varchar NOT NULL,
+	Huisnummer   varchar  NOT NULL,
 	Straat       varchar NOT NULL,
 	PRIMARY KEY (H_ID)
 );
@@ -93,13 +93,13 @@ CREATE TABLE kortingen
 
 CREATE TABLE Openingstijd
 (
-	O_ID      integer,
-	Eindtijd  time,
-	Starttijd time,
+	openingstijd_ID      varchar,
+	Eindtijd  timestamp,
+	Starttijd timestamp,
 	Datum     date,
-	Postcode  integer,
+	Postcode  varchar,
 	Naam      varchar,
-	PRIMARY KEY (O_ID),
+	PRIMARY KEY (openingstijd_ID),
 	CONSTRAINT fk_ToeristischeActiviteit
 		FOREIGN KEY (Postcode, Naam)
 			REFERENCES ToeristischeActiviteit (Postcode, activiteitnaam),
@@ -109,12 +109,12 @@ CREATE TABLE Openingstijd
 
 CREATE TABLE Toegankelijkheidsinfo
 (
-	toegankelijkheids_ID integer NOT NULL,
+	toegankelijkheids_ID varchar NOT NULL,
 	Info                 varchar NOT NULL,
 	Naam                 varchar NOT NULL,
-	Postcode             integer NOT NULL,
+	Postcode             varchar NOT NULL,
 	PRIMARY KEY (toegankelijkheids_ID),
-	CONSTRAINT fk_ToeristischeActiviteit,
+	CONSTRAINT fk_ToeristischeActiviteit
 	FOREIGN KEY (Postcode, Naam)
 		REFERENCES ToeristischeActiviteit (Postcode, activiteitnaam)
 );
