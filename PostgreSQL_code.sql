@@ -16,6 +16,30 @@ CREATE TABLE ToeristischeActiviteit
 	PRIMARY KEY (postcode, activiteitnaam)
 );
 
+CREATE TABLE Persoon
+(
+	Email      varchar,
+	Voornaam   varchar NOT NULL,
+	Achternaam varchar NOT NULL,
+	PRIMARY KEY (Email)
+);
+
+CREATE TABLE Hotel
+(
+	Beschrijving varchar,
+	Sterren      varchar,
+	MinPrijs     integer,
+	Email        varchar,
+	H_ID         integer,
+	Naam         varchar NOT NULL,
+	Regio        varchar NOT NULL,
+	Gemeente     varchar NOT NULL,
+	Postcode     integer NOT NULL,
+	Huisnummer   integer NOT NULL,
+	Straat       varchar NOT NULL,
+	PRIMARY KEY (H_ID)
+);
+
 CREATE TABLE inschrijving
 (
 	emailpersoon varchar,
@@ -33,7 +57,7 @@ CREATE TABLE boekingen
 	hotel_id     varchar,
 	tijdstip     timestamp,
 	begin        timestamp,
-	eind         timestimp,
+	eind         timestamp,
 	aantal       integer,
 	PRIMARY KEY (emailpersoon, hotel_id)
 );
@@ -59,12 +83,10 @@ CREATE TABLE Openingstijd
 	PRIMARY KEY (O_ID),
 	CONSTRAINT fk_ToeristischeActiviteit
 		FOREIGN KEY (Postcode, Naam)
-			REFERENCES ToeristischeActiviteit (Postcode, Naam)
+			REFERENCES ToeristischeActiviteit (Postcode, activiteitnaam),
+	CONSTRAINT validTijdCheck
+		CHECK (Eindtijd > Starttijd)
 );
-
-ALTER TABLE Openingstijd
-	ADD CONSTRAINT validTijdCheck
-		CHECK (Eindtijd > Starttijd);
 
 CREATE TABLE Toegankelijkheidsinfo
 (
@@ -75,29 +97,6 @@ CREATE TABLE Toegankelijkheidsinfo
 	PRIMARY KEY (toegankelijkheids_ID),
 	CONSTRAINT fk_ToeristischeActiviteit,
 	FOREIGN KEY (Postcode, Naam)
-		REFERENCES ToeristischeActiviteit (Postcode, Naam)
+		REFERENCES ToeristischeActiviteit (Postcode, activiteitnaam)
 );
 
-CREATE TABLE Persoon
-(
-	Email      varchar,
-	Voornaam   varchar NOT NULL,
-	Achternaam varchar NOT NULL,
-	PRIMARY KEY (Email)
-);
-
-CREATE TABLE Hotel
-(
-	Beschrijving varchar,
-	Sterren      varchar,
-	MinPrijs     integer,
-	Email        varchar,
-	H_ID         integer,
-	Naam         varchar NOT NULL,
-	Regio        varchar NOT NULL,
-	Gemeente     varchar NOT NULL,
-	Postcode     integer NOT NULL,
-	Huisnummer   integer NOT NULL,
-	Straat       varchar NOT NULL,
-	PRIMARY KEY (H_ID)
-);
