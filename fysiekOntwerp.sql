@@ -12,6 +12,13 @@ CREATE TABLE ToeristischeActiviteit
 	beschrijving              varchar,
 	activiteit_website        varchar,
 	activiteit_telefoonnummer varchar,
+	activiteit_toegang_doof         varchar,
+	activiteit_toegang_slechthorend varchar,
+        activiteit_toegang_mentaal      varchar,
+        activiteit_toegang_motorisch    varchar,
+        activiteit_toegang_blind        varchar,
+        activiteit_toegang_slechtziend  varchar,
+        activiteit_toegang_autisme      varchar,
 	PRIMARY KEY (postcode, activiteitnaam)
 );
 
@@ -47,6 +54,13 @@ CREATE TABLE inschrijving
 	aantal       integer,
 	bevestigd    boolean,
 	tijdstip     timestamp,
+	persoon_doof                    varchar,
+    	persoon_slechthorend            varchar,
+    	persoon_mentaal                 varchar,
+    	persoon_motorisch                varchar,
+    	persoon_blind                   varchar,
+    	persoon_slechtziend             varchar,
+    	persoon_autisme                 varchar,
 	PRIMARY KEY (emailpersoon, postcode, naam),
 	CONSTRAINT fk_toeristischeactiviteit
 		FOREIGN KEY (postcode, naam)
@@ -57,14 +71,6 @@ CREATE TABLE inschrijving
 
 );
 
-CREATE TABLE inschrijving_beperkingen
-(
-	beperking varchar,
-	emailpersoon varchar,
-	postcode varchar,
-	naam varchar,
-	PRIMARY KEY(emailpersoon, postcode, naam)
-)
 
 
 CREATE TABLE boekingen
@@ -115,16 +121,3 @@ CREATE TABLE Openingstijd
 	CONSTRAINT validTijdCheck
 		CHECK (Eindtijd > Starttijd)
 );
-
-CREATE TABLE Toegankelijkheidsinfo
-(
-	toegankelijkheids_ID varchar NOT NULL,
-	Info                 varchar NOT NULL,
-	Naam                 varchar NOT NULL,
-	Postcode             varchar NOT NULL,
-	PRIMARY KEY (toegankelijkheids_ID),
-	CONSTRAINT fk_ToeristischeActiviteit
-	FOREIGN KEY (Postcode, Naam)
-		REFERENCES ToeristischeActiviteit (Postcode, activiteitnaam)
-);
-
