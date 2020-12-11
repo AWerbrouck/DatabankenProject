@@ -12,7 +12,6 @@ CREATE TABLE ToeristischeActiviteit
 	beschrijving              varchar,
 	activiteit_website        varchar,
 	activiteit_telefoonnummer varchar,
-	toegankelijkheids_ID      varchar NOT NULL,
 	PRIMARY KEY (postcode, activiteitnaam)
 );
 
