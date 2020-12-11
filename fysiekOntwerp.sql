@@ -57,6 +57,16 @@ CREATE TABLE inschrijving
 
 );
 
+CREATE TABLE inschrijving_beperkingen
+(
+	beperking varchar,
+	emailpersoon varchar,
+	postcode varchar,
+	naam varchar,
+	PRIMARY KEY(emailpersoon, postcode, naam)
+)
+
+
 CREATE TABLE boekingen
 (
 	emailpersoon varchar,
