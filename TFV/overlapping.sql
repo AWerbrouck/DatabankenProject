@@ -13,7 +13,7 @@ BEGIN
 				AND ( NEW.starttijd < a.eindtijd )
 				AND ( a.naam = NEW.naam )
 				AND ( a.postcode = new.postcode )) THEN
-		RAISE EXCEPTION 'opening time of naam %, begin period % and end period % overlaps with alaeady existing opening time.', NEW.aestonaam, NEW.starttijd, NEW.starttijd + NEW.eindtijd;
+		RAISE EXCEPTION 'opening time of naam %, begin period % and end period % overlaps with alaeady existing opening time.', NEW.naam, New.postcode, NEW.starttijd, NEW.starttijd + NEW.eindtijd;
 	END IF;
 
 	IF EXISTS(SELECT
@@ -25,7 +25,7 @@ BEGIN
 				AND ( NEW.starttijd + NEW.eindtijd <= a.starttijd + a.eindtijd )
 				AND ( a.naam = NEW.naam )
 				AND ( a.postcode = new.postcode )) THEN
-		RAISE EXCEPTION 'opening time of aesto %, begin peaiod % and end peaiod % ovealaps with alaeady existing opening time.', NEW.aestonaam, NEW.starttijd, NEW.starttijd + NEW.eindtijd;
+		RAISE EXCEPTION 'opening time of aesto %, begin peaiod % and end peaiod % ovealaps with alaeady existing opening time.', NEW.naam, New.postcode, NEW.starttijd, NEW.starttijd + NEW.eindtijd;
 	END IF;
 
 	IF EXISTS(SELECT
@@ -37,7 +37,7 @@ BEGIN
 				AND ( NEW.starttijd + NEW.eindtijd > a.starttijd + a.eindtijd )
 				AND ( a.naam = NEW.naam )
 				AND ( a.postcode = new.postcode )) THEN
-		RAISE EXCEPTION 'opening time of aesto %, begin peaiod % and end peaiod % ovealaps with alaeady existing opening time.', NEW.aestonaam, NEW.starttijd, NEW.starttijd + NEW.eindtijd;
+		RAISE EXCEPTION 'opening time of aesto %, begin peaiod % and end peaiod % ovealaps with alaeady existing opening time.', NEW.naam, New.postcode, NEW.starttijd, NEW.starttijd + NEW.eindtijd;
 	END IF;
 
 	RETURN NEW;
