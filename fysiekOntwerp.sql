@@ -78,9 +78,10 @@ CREATE TABLE boekingen
 	emailpersoon varchar,
 	hotel_id     varchar,
 	tijdstip     timestamp,
-	begin        timestamp,
-	eind         timestamp,
+	begintijd        timestamp,
+	eindtijd         timestamp,
 	aantal       integer,
+	bevestigd boolean,
 	PRIMARY KEY (emailpersoon, hotel_id),
 	CONSTRAINT fk_hotel
 		FOREIGN KEY (hotel_id)
