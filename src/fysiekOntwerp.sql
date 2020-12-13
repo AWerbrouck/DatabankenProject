@@ -2,7 +2,6 @@ CREATE TABLE ToeristischeActiviteit
 (
 	toeristische_regio              varchar NOT NULL,
 	activiteittype                  varchar NOT NULL,
-	openingstijd_ID                 varchar NOT NULL,
 	PrijsPerPersoon                 integer NOT NULL,
 	straat                          varchar,
 	postcode                        varchar,
