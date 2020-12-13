@@ -2,7 +2,7 @@ CREATE TABLE ToeristischeActiviteit
 (
 	toeristische_regio              varchar NOT NULL,
 	activiteittype                  varchar NOT NULL,
-	PrijsPerPersoon                 integer NOT NULL,
+	PrijsPerPersoon                 varchar NOT NULL,
 	straat                          varchar,
 	postcode                        varchar,
 	activiteitnaam                  varchar,
@@ -26,7 +26,7 @@ CREATE TABLE Persoon
 	Email      varchar,
 	Voornaam   varchar NOT NULL,
 	Achternaam varchar NOT NULL,
-	PRIMARY KEY (Email)
+	PRIMARY KEY (Email) -- TODO
 );
 
 CREATE TABLE Hotel
@@ -42,10 +42,10 @@ CREATE TABLE Hotel
 	Postcode     varchar NOT NULL,
 	Huisnummer   varchar NOT NULL,
 	Straat       varchar NOT NULL,
-	PRIMARY KEY (H_ID)
+	PRIMARY KEY (H_ID) -- TODO
 );
 
-CREATE TABLE inschrijving
+CREATE TABLE inschrijving --TODO
 (
 	emailpersoon         varchar,
 	postcode             varchar,
@@ -121,5 +121,5 @@ CREATE TABLE Openingstijd
 		FOREIGN KEY (Postcode, Naam)
 			REFERENCES ToeristischeActiviteit (Postcode, activiteitnaam),
 	CONSTRAINT validTijdCheck
-		CHECK (Eindtijd > Starttijd)
+		CHECK (Eindtijd > Starttijd) -- TODO
 );
