@@ -21,8 +21,8 @@ BEGIN
 			  FROM
 				  openingstijd a
 			  WHERE
-					( a.starttijd < NEW.starttijd + NEW.eindtijd )
-				AND ( NEW.starttijd + NEW.eindtijd <= a.starttijd + a.eindtijd )
+					( a.starttijd < NEW.starttijd + NEW.duur )
+				AND ( NEW.starttijd + NEW.duur <= a.starttijd + a.duur )
 				AND ( a.naam = NEW.naam )
 				AND a.postcode = new.postcode ) THEN
 		RAISE EXCEPTION 'opening time of aesto %.', NEW.naam;
@@ -34,7 +34,7 @@ BEGIN
 				  openingstijd a
 			  WHERE
 					( NEW.starttijd < a.starttijd )
-				AND ( NEW.starttijd + NEW.eindtijd > a.starttijd + a.eindtijd )
+				AND ( NEW.starttijd + NEW.duur > a.starttijd + a.duur )
 				AND ( a.naam = NEW.naam )
 				AND ( a.postcode = new.postcode )) THEN
 		RAISE EXCEPTION 'opening time of aesto %,.', NEW.naam;
