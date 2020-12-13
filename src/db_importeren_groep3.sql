@@ -1,7 +1,13 @@
 --voeg ToeristischeActiviteiten toe
 
-INSERT INTO ToeristischeActiviteit(toeristische_regio, activiteittype, openingstijd_ID, prijsperpersoon, straat, postcode, activiteitnaam, gemeente, huisnummer, beschrijving, activiteit_website, activiteit_telefoonnummer, activiteit_toegang_doof, activiteit_toegang_slechthorend, activiteit_toegang_mentaal, activiteit_toegang_motorisch, activiteit_toegang_blind, activiteit_toegang_slechtziend, activiteit_toegang_autisme)
-(SELECT DISTINCT toeristische_regio, activiteittype, ID/////////////,activiteit_prijs, straat, postcode, activiteitnaam, gemeente, huisnummer, beschrijving, activiteit_website, activiteit_telefoonnummer, activiteit_toegang_doof::boolean, activiteit_toegang_slechthorend::boolean, activiteit_toegang_mentaal::boolean, activiteit_toegang_motorisch::boolean, activiteit_toegang_blind::boolean, activiteit_toegang_slechtziend::boolean, activiteit_toegang_autisme::boolean FROM super_activiteitreservaties);
+INSERT INTO ToeristischeActiviteit(toeristische_regio, activiteittype, prijsperpersoon, straat, postcode, activiteitnaam, gemeente, huisnummer, beschrijving, activiteit_website, activiteit_telefoonnummer, activiteit_toegang_doof, activiteit_toegang_slechthorend, activiteit_toegang_mentaal, activiteit_toegang_motorisch, activiteit_toegang_blind, activiteit_toegang_slechtziend, activiteit_toegang_autisme)
+(SELECT DISTINCT toeristische_regio, activiteittype,activiteit_prijs, straat, postcode, activiteitnaam, gemeente, huisnummer, beschrijving, activiteit_website, activiteit_telefoonnummer, activiteit_toegang_doof::boolean, activiteit_toegang_slechthorend::boolean, activiteit_toegang_mentaal::boolean, activiteit_toegang_motorisch::boolean, activiteit_toegang_blind::boolean, activiteit_toegang_slechtziend::boolean, activiteit_toegang_autisme::boolean FROM super_activiteitreservaties);
+
+
+--voeg openingstijd toe
+
+INSERT INTO openingstijd(eindtijd, starttijd, datum, postcode, naam)
+(SELECT DISTINCT begintijdstip::timestamp + duur::timestamp, begintijdstip::timestamp, begintijdstip::date, postcode, activiteitnaam FROM super_activiteitreservaties);
 
 
 --voeg Personen toe
@@ -13,7 +19,7 @@ INSERT INTO Persoon(email, voornaam, achternaam)
 --voeg inschrijvingen toe
 
 INSERT INTO inschrijving(emailpersoon, postcode, naam, aantal, bevestigd, tijdstip, persoon_doof, persoon_slechthorend, persoon_mentaal, persoon_motorisch, persoon_blind, persoon_slechtziend, persoon_autisme)
-(SELECT DISTINCT persoon_email, postcode, activiteitnaam, aantal_personen, boeking_bevestigd::boolean, begintijdstip::timestamp,persoon_doof::integer, persoon_slechthorend::integer, persoon_mentaal::integer, persoon_motorisch::integer, persoon_blind::integer, persoon_slechtziend::integer, persoon_autismepersoon_doof::integer, persoon_slechthorend::integer, persoon_mentaal::integer, persoon_motorisch::integer, persoon_blind::integer, persoon_slechtziend::integer, persoon_autisme::integer FROM super_activiteitreservaties); 
+(SELECT DISTINCT persoon_email, postcode, activiteitnaam, aantal_personen, boeking_bevestigd::boolean, begintijdstip::timestamp,persoon_doof::integer, persoon_slechthorend::integer, persoon_mentaal::integer, persoon_motorisch::integer, persoon_blind::integer, persoon_slechtziend::integer, persoon_autisme::integer FROM super_activiteitreservaties); 
 
 
 --voeg hotel toe
