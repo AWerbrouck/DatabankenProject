@@ -109,9 +109,9 @@ INSERT INTO
 	(SELECT DISTINCT
 		 persoon_email,
 		 hotelid,
-		 boekingstijdstip,
-		 begindatum,
-		 einddatum,
+		 boekingstijdstip::timestamp,
+		 begindatum::date,
+		 einddatum::date,
 		 aantal_personen,
 		 boeking_bevestigd
 	 FROM
