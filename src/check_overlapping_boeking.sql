@@ -1,4 +1,4 @@
-CREATE FUNCTION check_overlapping_opening()
+CREATE FUNCTION check_overlapping_boeking()
 	RETURNS trigger AS
 $BODY$
 DECLARE
@@ -52,8 +52,8 @@ END ;
 $BODY$
 	LANGUAGE plpgsql;
 
-CREATE TRIGGER check_overlapping_opening_trigger
+CREATE TRIGGER check_overlapping_boeking_trigger
 	BEFORE INSERT
 	ON boekingen
 	FOR EACH ROW
-EXECUTE PROCEDURE check_overlapping_opening();
+EXECUTE PROCEDURE check_overlapping_boeking();
