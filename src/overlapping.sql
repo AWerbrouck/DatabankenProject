@@ -9,11 +9,11 @@ BEGIN
 			  FROM
 				  openingstijd a
 			  WHERE
-					( a.starttijd <= NEW.starttijd )
-				AND ( NEW.starttijd < a.eindtijd )
-				AND ( a.naam = NEW.naam )
-				AND ( a.postcode = new.postcode )) THEN
-		RAISE EXCEPTION 'opening time of naam %, begin period % and end period % overlaps with alaeady existing opening time.', NEW.naam, New.postcode, NEW.starttijd, NEW.starttijd + NEW.eindtijd;
+					( a.starttijd <= NEW.starttijd ) AND
+				 ( NEW.starttijd < a.eindtijd )AND
+				 ( a.naam = NEW.naam )AND
+				 a.postcode = new.postcode ) THEN
+		RAISE EXCEPTION 'naam%', NEW.naam;
 	END IF;
 
 	IF EXISTS(SELECT
@@ -24,8 +24,8 @@ BEGIN
 					( a.starttijd < NEW.starttijd + NEW.eindtijd )
 				AND ( NEW.starttijd + NEW.eindtijd <= a.starttijd + a.eindtijd )
 				AND ( a.naam = NEW.naam )
-				AND ( a.postcode = new.postcode )) THEN
-		RAISE EXCEPTION 'opening time of aesto %, begin peaiod % and end peaiod % ovealaps with alaeady existing opening time.', NEW.naam, New.postcode, NEW.starttijd, NEW.starttijd + NEW.eindtijd;
+				AND a.postcode = new.postcode ) THEN
+		RAISE EXCEPTION 'opening time of aesto %.', NEW.naam;
 	END IF;
 
 	IF EXISTS(SELECT
@@ -37,7 +37,7 @@ BEGIN
 				AND ( NEW.starttijd + NEW.eindtijd > a.starttijd + a.eindtijd )
 				AND ( a.naam = NEW.naam )
 				AND ( a.postcode = new.postcode )) THEN
-		RAISE EXCEPTION 'opening time of aesto %, begin peaiod % and end peaiod % ovealaps with alaeady existing opening time.', NEW.naam, New.postcode, NEW.starttijd, NEW.starttijd + NEW.eindtijd;
+		RAISE EXCEPTION 'opening time of aesto %,.', NEW.naam;
 	END IF;
 
 	RETURN NEW;
@@ -46,7 +46,7 @@ END;
 $BODY$
 	LANGUAGE plpgsql;
 
-CREATE TRIGGER check_ovealapping_opening_trigger
+CREATE TRIGGER check_overlapping_opening_trigger
 	BEFORE INSERT
 	ON openingstijd
 	FOR EACH ROW
