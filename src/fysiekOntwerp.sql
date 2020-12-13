@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS boekingen CASCADE;
 DROP TABLE IF EXISTS kortingen CASCADE;
 DROP TABLE IF EXISTS openingstijd CASCADE;
 DROP TRIGGER IF EXISTS check_overlapping_opening_trigger ON openingstijd CASCADE;
-DROP SEQUENCE IF EXISTS openingstijd_id_seq CASCADE 
+DROP SEQUENCE IF EXISTS openingstijd_id_seq CASCADE;
 
 CREATE TABLE ToeristischeActiviteit
 (
@@ -87,8 +87,8 @@ CREATE TABLE boekingen
 	emailpersoon varchar,
 	hotel_id     varchar,
 	tijdstip     timestamp,
-	begintijd    timestamp,
-	eindtijd     timestamp,
+	begintijd    date,
+	eindtijd     date,
 	aantal       integer,
 	bevestigd    boolean,
 	PRIMARY KEY (emailpersoon, hotel_id, begintijd),
