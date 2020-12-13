@@ -110,7 +110,7 @@ CREATE SEQUENCE openingstijd_id_seq;
 
 CREATE TABLE Openingstijd
 (
-	openingstijd_ID varchar DEFAULT nextval('openingstijd_id_seq'),
+	openingstijd_ID integer DEFAULT nextval('openingstijd_id_seq'),
 	Eindtijd        timestamp,
 	Starttijd       timestamp,
 	Datum           date,
