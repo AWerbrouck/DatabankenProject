@@ -1,0 +1,99 @@
+
+ToeristischeActiviteit( Regio:varchar,
+                        TypeActiviteit:varchar,
+                        O_ID:integer,
+                        PrijsPerPersoon:integer,
+                        Straat:varchar,
+                        Postcode:integer,
+                        Naam:varchar,
+                        Gemeente:varchar,
+                        Huisnummer:integer,
+                        Beschrijving:varchar,
+                        Website:varchar,
+                        Tel:varchar,
+                        T_ID:integer)
+
+    Primaire Sleutel: {Postcode, Naam}              
+    Not Null: Regio, TypeActiviteit, O_ID, PrijsPerPersoon, Gemeente, T_ID
+
+    
+
+
+    Openingstijd( O_ID:integer,
+                  Eindtijd:time,
+                  Starttijd:time,
+                  Datum:date
+                  Postcode:integer,
+                  Naam:varchar)
+              
+        Primaire Sleutel: {O_ID}
+        Foreign Key: {Postcode, Naam} References ToeristischeActiviteit
+        Check: Starttijd > Eindtijd
+        
+        NOT NULL: Postcode, Naam
+
+    Toegankelijkheidsinfo(  T_ID:integer,
+                            Postcode:integer,
+                            Naam:varchar,
+                            Info:varchar)
+
+        Primaire Sleutel: {T_ID}
+        Foreign Key: {Postcode, Naam} References ToeristischeActiviteit
+        NOT NULL: T_ID, Postcode, Naam, Info
+
+
+
+Persoon(  Email:varchar,
+          Voornaam:varchar,
+          Achternaam:varchar)
+          
+    Primaire Sleutel: {Email}
+    NOT NULL: Voornaam Achternaam
+
+
+Hotel(  Beschrijving:varchar,
+        Sterren:varchar,
+        MinPrijs:integer,
+        Email:varchar,
+        H_ID:integer,
+        Naam:varchar,
+        Regio:varchar,
+        Gemeente:integer,
+        Postcode:integer,
+        Huisnummer:integer,
+        Straat:varchar)
+        
+    Primaire Sleutel: {H_ID} 
+    NOT NULL: Naam, Regio, Gemeente, Postcode, Huisnummer, Straat
+#relaties
+
+Persoon_ToeristischeActiviteit( PersoonsEmail:varchar,
+                                T_ID:integer,
+                                Aantal:integer,
+                                Bevestigd:bool,
+                                TijdstipBoeking:timestamp)
+    Primaire Sleutel: {PersoonsEmail, T_ID}
+    Vreemde Sleutel:  ({PersoonsEmail -> Persoon{Email}},
+                       {T_ID -> ToeristischeActiviteit{Postcode, Naam}})
+
+
+
+persoon_Hotel( PersoonsEmail:varchar,
+               H_ID:integer,
+               TijdstipBoeking:timestamp,
+               Aantal:integer,
+               Begin:timestamp,
+               Eind:timestamp)
+    Primaire Sleutel: {PersoonsEmail, H_ID}
+    Vreemde Sleutel:  ({PersoonsEmail -> Persoon{Email}},
+                       {H_ID -> Hotel{H_ID}}
+
+
+
+Hotel_ToeristischeActiviteit( H_ID:integer,
+                              T_ID:integer,
+                              Procent:real)      
+    Primaire Sleutel: {H_ID, T_ID}
+    Vreemde Sleutel:  ({H_ID-> Hotel{H_ID}},
+                       {T_ID -> ToeristischeActiviteit{Postcode, Naam}})
+    //TODO: Check voor regio hotel == regio ToeristischeActiviteit
