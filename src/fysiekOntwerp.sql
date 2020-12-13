@@ -60,7 +60,7 @@ CREATE TABLE inschrijving --TODO
 	persoon_blind        integer,
 	persoon_slechtziend  integer,
 	persoon_autisme      integer,
-	PRIMARY KEY (emailpersoon, postcode, naam),
+	PRIMARY KEY (emailpersoon, postcode, naam, tijdstip),
 	CONSTRAINT fk_toeristischeactiviteit
 		FOREIGN KEY (postcode, naam)
 			REFERENCES ToeristischeActiviteit (postcode, activiteitnaam),
@@ -81,7 +81,7 @@ CREATE TABLE boekingen
 	eindtijd     timestamp,
 	aantal       integer,
 	bevestigd    boolean,
-	PRIMARY KEY (emailpersoon, hotel_id),
+	PRIMARY KEY (emailpersoon, hotel_id, begintijd),
 	CONSTRAINT fk_hotel
 		FOREIGN KEY (hotel_id)
 			REFERENCES Hotel (H_ID),
@@ -111,9 +111,8 @@ CREATE SEQUENCE openingstijd_id_seq;
 CREATE TABLE Openingstijd
 (
 	openingstijd_ID integer DEFAULT nextval('openingstijd_id_seq'),
-	Eindtijd        timestamp,
 	Starttijd       timestamp,
-	Datum           date,
+	duur           interval,
 	Postcode        varchar,
 	Naam            varchar,
 	PRIMARY KEY (openingstijd_ID),
@@ -121,5 +120,5 @@ CREATE TABLE Openingstijd
 		FOREIGN KEY (Postcode, Naam)
 			REFERENCES ToeristischeActiviteit (Postcode, activiteitnaam),
 	CONSTRAINT validTijdCheck
-		CHECK (Eindtijd > Starttijd) -- TODO
+		CHECK (starttijd + duur  > Starttijd)
 );

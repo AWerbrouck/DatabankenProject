@@ -6,8 +6,8 @@ INSERT INTO ToeristischeActiviteit(toeristische_regio, activiteittype, prijsperp
 
 --voeg openingstijd toe
 
-INSERT INTO openingstijd(eindtijd, starttijd, datum, postcode, naam)
-(SELECT DISTINCT begintijdstip::timestamp + duur::interval, begintijdstip::timestamp, begintijdstip::date, postcode, activiteitnaam FROM super_activiteitreservaties);
+INSERT INTO openingstijd(starttijd, duur, postcode, naam)
+(SELECT DISTINCT begintijdstip::timestamp, duur::interval, postcode, activiteitnaam FROM super_activiteitreservaties);
 
 
 --voeg Personen toe

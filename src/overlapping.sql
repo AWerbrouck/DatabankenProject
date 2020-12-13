@@ -10,7 +10,7 @@ BEGIN
 				  openingstijd a
 			  WHERE
 					( a.starttijd <= NEW.starttijd ) AND
-				 ( NEW.starttijd < a.eindtijd )AND
+				 ( NEW.starttijd < a.starttijd + a.duur)AND
 				 ( a.naam = NEW.naam )AND
 				 a.postcode = new.postcode ) THEN
 		RAISE EXCEPTION 'naam%', NEW.naam;
