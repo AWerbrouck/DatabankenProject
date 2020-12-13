@@ -2,7 +2,7 @@ CREATE TABLE ToeristischeActiviteit
 (
 	toeristische_regio              varchar NOT NULL,
 	activiteittype                  varchar NOT NULL,
-	openingstijd_ID                 integer NOT NULL,
+	openingstijd_ID                 varchar NOT NULL,
 	PrijsPerPersoon                 integer NOT NULL,
 	straat                          varchar,
 	postcode                        varchar,
@@ -34,7 +34,7 @@ CREATE TABLE Hotel
 (
 	Beschrijving varchar,
 	Sterren      varchar,
-	MinPrijs     integer,
+	MinPrijs     float,
 	Email        varchar,
 	H_ID         varchar,
 	Naam         varchar NOT NULL,
