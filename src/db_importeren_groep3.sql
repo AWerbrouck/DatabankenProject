@@ -33,8 +33,13 @@ INSERT INTO
 
 INSERT INTO
 	openingstijd(starttijd, duur, postcode, naam)
-	(SELECT DISTINCT begintijdstip::timestamp, duur::interval, postcode, activiteitnaam
-	 FROM super_activiteitreservaties);
+	(SELECT DISTINCT
+		 begintijdstip::timestamp,
+		 duur::interval,
+		 postcode,
+		 activiteitnaam
+	 FROM
+		 super_activiteitreservaties);
 
 
 --voeg Personen toe
@@ -48,30 +53,10 @@ INSERT INTO
 	 FROM
 		 super_activiteitreservaties
 	 WHERE
-		 NOT EXISTS(SELECT 1 from persoon p where p.email = persoon_email ));
+		 NOT EXISTS(SELECT 1 FROM persoon p WHERE p.email = persoon_email));
 
 
 --voeg inschrijvingen toe
-
-INSERT INTO
-	inschrijving(emailpersoon, postcode, naam, aantal, bevestigd, tijdstip, persoon_doof, persoon_slechthorend,
-				 persoon_mentaal, persoon_motorisch, persoon_blind, persoon_slechtziend, persoon_autisme)
-	(SELECT DISTINCT
-		 persoon_email,
-		 postcode,
-		 activiteitnaam,
-		 aantal_personen::integer,
-		 boeking_bevestigd::boolean,
-		 begintijdstip::timestamp,
-		 persoon_doof::integer,
-		 persoon_slechthorend::integer,
-		 persoon_mentaal::integer,
-		 persoon_motorisch::integer,
-		 persoon_blind::integer,
-		 persoon_slechtziend::integer,
-		 persoon_autisme::integer
-	 FROM
-		 super_activiteitreservaties);
 
 
 --voeg hotel toe
@@ -98,11 +83,36 @@ INSERT INTO
 
 INSERT INTO
 	Persoon(email, voornaam, achternaam)
-	(SELECT DISTINCT persoon_email, voornaam, achternaam FROM super_hotelboekingen WHERE
-		 NOT EXISTS(SELECT 1 from persoon p where p.email = persoon_email ));
+	(SELECT DISTINCT
+		 persoon_email,
+		 voornaam,
+		 achternaam
+	 FROM
+		 super_hotelboekingen
+	 WHERE
+		 NOT EXISTS(SELECT 1 FROM persoon p WHERE p.email = persoon_email));
 
 
 --voeg boeking toe
+INSERT INTO
+	inschrijving(emailpersoon, postcode, naam, aantal, bevestigd, tijdstip, persoon_doof, persoon_slechthorend,
+				 persoon_mentaal, persoon_motorisch, persoon_blind, persoon_slechtziend, persoon_autisme)
+	(SELECT DISTINCT
+		 persoon_email,
+		 postcode,
+		 activiteitnaam,
+		 aantal_personen::integer,
+		 boeking_bevestigd::boolean,
+		 begintijdstip::timestamp,
+		 persoon_doof::integer,
+		 persoon_slechthorend::integer,
+		 persoon_mentaal::integer,
+		 persoon_motorisch::integer,
+		 persoon_blind::integer,
+		 persoon_slechtziend::integer,
+		 persoon_autisme::integer
+	 FROM
+		 super_activiteitreservaties);
 
 INSERT INTO
 	boekingen(emailpersoon, hotel_id, tijdstip, begintijd, eindtijd, aantal, bevestigd)
@@ -112,8 +122,8 @@ INSERT INTO
 		 boekingstijdstip::timestamp,
 		 begindatum::date,
 		 einddatum::date,
-		 aantal_personen,
-		 boeking_bevestigd
+		 aantal_personen::integer,
+		 boeking_bevestigd::boolean
 	 FROM
 		 super_hotelboekingen);
 
@@ -123,3 +133,26 @@ INSERT INTO
 INSERT INTO
 	kortingen(activiteitnaam, activiteit_postcode, hotel_id, percentage_korting)
 	(SELECT DISTINCT activiteitnaam, activiteit_postcode, hotelid, percentage_korting FROM super_kortingen);
+
+
+
+-- INSERT INTO
+-- 	Hotel(H_ID)
+-- 	(SELECT DISTINCT
+-- 		 hotelid
+-- 	 FROM
+-- 		 super_kortingen
+-- 	 WHERE
+-- 		 NOT EXISTS(SELECT 1 from hotel h where h.h_id = hotelid ));
+
+-- INSERT INTO
+-- 	toeristischeactiviteit(postcode, activiteitnaam)
+-- 	(SELECT DISTINCT
+-- 		 activiteit_postcode,
+-- 	     activiteitnaam
+-- 	 FROM
+-- 		 super_kortingen spa
+-- 	 WHERE
+-- 		 NOT EXISTS(SELECT 1 from toeristischeactiviteit t where t.postcode = spa.activiteit_postcode AND t.activiteitnaam = spa.activiteitnaam));
+
+
