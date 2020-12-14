@@ -21,7 +21,6 @@ FROM
 ) sub1;
 
 --QUERY 2
---boeking en inschrijving???
 --Aantal unieke personen die een boeking plaatste voor meer dan 1 persoon
 SELECT
 COUNT(sub2.emails)
@@ -77,7 +76,6 @@ FROM
 
 
 --QUERY 5
---2 keer slapen, 48 uur of 2 dagen (en dus mogelijks ook minder als 48u, bv inchecken op 13 dec en uitchecken op 14 dec (technisch gezien ook 2 dagen))
 --Tel aantal unieke hotelboekingen die geboekt werden voor een periode/tijdspanne van 2 dagen of meer
 SELECT
 COUNT(sub1.emailpersoon)
@@ -90,13 +88,23 @@ FROM
 	FROM
 	boekingen b
 	WHERE
-	b.eindtijd - b.begintijd >= 2
+	b.eindtijd != b.begintijd
 ) sub1;
 
 
 --QUERY 6
 --De primary key uniek, of alleen de combinatie van starttijd en duur uniek, en dus onafhankelijk van de activiteit???
 --Tel het aantal unieke openingsperiodes
+SELECT
+COUNT(sub1.starttijd)
+FROM
+(	SELECT DISTINCT
+	o.starttijd,
+	o.duur
+	FROM
+	openingstijd o
+) sub1;
+
 SELECT
 COUNT(openingstijd_ID)
 FROM
