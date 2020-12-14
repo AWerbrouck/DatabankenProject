@@ -93,7 +93,6 @@ FROM
 
 
 --QUERY 6
---De primary key uniek, of alleen de combinatie van starttijd en duur uniek, en dus onafhankelijk van de activiteit???
 --Tel het aantal unieke openingsperiodes
 SELECT
 COUNT(sub1.starttijd)
@@ -104,8 +103,3 @@ FROM
 	FROM
 	openingstijd o
 ) sub1;
-
-SELECT
-COUNT(openingstijd_ID)
-FROM
-openingstijd;
