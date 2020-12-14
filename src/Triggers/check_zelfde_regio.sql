@@ -8,13 +8,13 @@ BEGIN
 			SELECT
 				1
 			FROM
-				kortingen k
-					INNER JOIN toeristischeactiviteit t
-							   ON new.activiteit_postcode = t.postcode AND new.activiteitnaam = t.activiteitnaam
-					INNER JOIN hotel h
-							   ON new.hotel_id = h.h_id
+				toeristischeactiviteit t,
+				hotel h
 			WHERE
-				t.toeristische_regio != h.regio
+				  new.activiteit_postcode = t.postcode
+			  AND new.activiteitnaam = t.activiteitnaam
+			  AND new.hotel_id = h.h_id
+			  AND t.toeristische_regio != h.regio
 		) THEN
 		RAISE EXCEPTION 'A hotel can not give a discount on an activity that is not in the same region';
 	END IF;
