@@ -16,7 +16,7 @@ BEGIN
 			WHERE
 				t.toeristische_regio != h.regio
 		) THEN
-		RAISE EXCEPTION 'A hotel can not give a discont on an acitivity that is not in the same region';
+		RAISE EXCEPTION 'A hotel can not give a discount on an activity that is not in the same region';
 	END IF;
 	RETURN new;
 END;
