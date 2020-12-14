@@ -1,6 +1,6 @@
-DROP VIEW IF EXISTS prijs_activiteit CASCADE;
+DROP VIEW IF EXISTS prijs_inschrijving CASCADE;
 
-CREATE VIEW public.prijs_activiteit AS
+CREATE VIEW public.prijs_inschrijving AS
 SELECT
     i.emailpersoon,
     i.naam,

@@ -132,3 +132,7 @@ CREATE TABLE Openingstijd
 	CONSTRAINT validTijdCheck
 		CHECK (starttijd + duur  > Starttijd)
 );
+
+
+
+
