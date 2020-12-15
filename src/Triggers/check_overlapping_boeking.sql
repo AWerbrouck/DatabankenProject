@@ -1,3 +1,5 @@
+DROP FUNCTION IF EXISTS check_overlapping_boeking() CASCADE;
+DROP TRIGGER IF EXISTS check_overlapping_boeking_trigger ON boekingen;
 CREATE FUNCTION check_overlapping_boeking()
 	RETURNS trigger AS
 $BODY$

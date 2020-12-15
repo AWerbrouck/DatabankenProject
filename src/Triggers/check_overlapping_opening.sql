@@ -1,3 +1,5 @@
+DROP FUNCTION IF EXISTS check_overlapping_opening() CASCADE;
+DROP TRIGGER IF EXISTS check_overlapping_opening_trigger ON openingstijd;
 CREATE FUNCTION check_overlapping_opening()
 	RETURNS trigger AS
 $BODY$
@@ -9,10 +11,10 @@ BEGIN
 			  FROM
 				  openingstijd a
 			  WHERE
-					( a.starttijd <= NEW.starttijd ) AND
-				 ( NEW.starttijd < a.starttijd + a.duur)AND
-				 ( a.naam = NEW.naam )AND
-				 a.postcode = new.postcode ) THEN
+					( a.starttijd <= NEW.starttijd )
+				AND ( NEW.starttijd < a.starttijd + a.duur )
+				AND ( a.naam = NEW.naam )
+				AND a.postcode = new.postcode) THEN
 		RAISE EXCEPTION 'openingstijden van zelfde activiteiten mogen niet overlappen';
 	END IF;
 
@@ -24,7 +26,7 @@ BEGIN
 					( a.starttijd < NEW.starttijd + NEW.duur )
 				AND ( NEW.starttijd + NEW.duur <= a.starttijd + a.duur )
 				AND ( a.naam = NEW.naam )
-				AND a.postcode = new.postcode ) THEN
+				AND a.postcode = new.postcode) THEN
 		RAISE EXCEPTION 'openingstijden van zelfde activiteiten mogen niet overlappen';
 	END IF;
 

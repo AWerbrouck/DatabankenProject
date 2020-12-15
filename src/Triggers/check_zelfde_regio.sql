@@ -1,3 +1,6 @@
+DROP FUNCTION IF EXISTS check_zelfde_regio() CASCADE;
+DROP TRIGGER IF EXISTS check_zelfde_regio_trigger ON kortingen;
+
 CREATE FUNCTION check_zelfde_regio()
 	RETURNS trigger AS
 $BODY$
