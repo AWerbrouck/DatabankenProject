@@ -15,7 +15,7 @@ BEGIN
 			  AND b.begintijd <= new.begintijd
 			  AND new.eindtijd <= b.eindtijd
 		) THEN
-		RAISE EXCEPTION 'yeet';
+		RAISE EXCEPTION 'boekingen mogen niet overlappen';
 	END IF;
 
 	IF EXISTS(
@@ -29,7 +29,7 @@ BEGIN
 			  AND b.begintijd <= new.begintijd
 			  AND new.begintijd <= new.eindtijd
 		) THEN
-		RAISE EXCEPTION 'yeet';
+		RAISE EXCEPTION 'boekingen mogen niet overlappen';
 	END IF;
 
 	IF EXISTS(
@@ -43,7 +43,7 @@ BEGIN
 			  AND b.begintijd <= new.eindtijd
 			  AND new.eindtijd <= b.eindtijd
 		) THEN
-		RAISE EXCEPTION 'yeet';
+		RAISE EXCEPTION 'boekingen mogen niet overlappen';
 	END IF;
 
 	RETURN new;

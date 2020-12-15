@@ -21,10 +21,10 @@ SELECT
 			THEN 'onbekend'
 		ELSE 'toegankelijk'
 	END AS toegankelijkheid,
-	i1.emailpersoon,
-	t2.activiteitnaam,
-	t2.postcode,
-	i1.tijdstip
+	i1.emailpersoon as emailpersoon,
+	t2.activiteitnaam as naam_activiteit,
+	t2.postcode as postcode_activiteit,
+	i1.tijdstip as tijdstip_inchrijving
 FROM
 	inschrijving i1
 		INNER JOIN toeristischeactiviteit t2

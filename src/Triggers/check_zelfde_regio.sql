@@ -16,7 +16,7 @@ BEGIN
 			  AND new.hotel_id = h.h_id
 			  AND t.toeristische_regio != h.regio
 		) THEN
-		RAISE EXCEPTION 'A hotel can not give a discount on an activity that is not in the same region';
+		RAISE EXCEPTION 'Hotel kan geen korting geven op een activiteit in een andere regio';
 	END IF;
 	RETURN new;
 END;
