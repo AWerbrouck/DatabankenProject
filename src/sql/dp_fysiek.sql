@@ -7,6 +7,18 @@ DROP TABLE IF EXISTS kortingen CASCADE;
 DROP TABLE IF EXISTS openingstijd CASCADE;
 DROP TRIGGER IF EXISTS check_overlapping_opening_trigger ON openingstijd CASCADE;
 DROP SEQUENCE IF EXISTS openingstijd_id_seq CASCADE;
+DROP TRIGGER IF EXISTS check_overlapping_opening_trigger ON openingstijd CASCADE;
+DROP SEQUENCE IF EXISTS openingstijd_id_seq CASCADE;
+DROP FUNCTION IF EXISTS check_zelfde_regio() CASCADE;
+DROP TRIGGER IF EXISTS check_zelfde_regio_trigger ON kortingen;
+DROP FUNCTION IF EXISTS check_overlapping_opening() CASCADE;
+DROP TRIGGER IF EXISTS check_overlapping_opening_trigger ON openingstijd;
+DROP FUNCTION IF EXISTS check_overlapping_boeking() CASCADE;
+DROP TRIGGER IF EXISTS check_overlapping_boeking_trigger ON boekingen;
+DROP VIEW IF EXISTS prijs_boeking CASCADE;
+DROP VIEW IF EXISTS prijs_inschrijving CASCADE;
+DROP VIEW IF EXISTS is_toegankelijk CASCADE;
+
 
 CREATE TABLE ToeristischeActiviteit
 (
@@ -28,7 +40,13 @@ CREATE TABLE ToeristischeActiviteit
 	activiteit_toegang_blind        boolean,
 	activiteit_toegang_slechtziend  boolean,
 	activiteit_toegang_autisme      boolean,
-	PRIMARY KEY (postcode, activiteitnaam)
+	PRIMARY KEY (postcode, activiteitnaam),
+	CONSTRAINT check_valid_postcode
+		CHECK (postcode >= 1),
+	CONSTRAINT check_valid_huisnr
+		CHECK (huisnummer >= 1),
+	CONSTRAINT check_valid_prijs
+		CHECK (prijsperpersoon >= 0)
 );
 
 CREATE TABLE Persoon
@@ -39,28 +57,12 @@ CREATE TABLE Persoon
 	PRIMARY KEY (Email) -- TODO
 );
 
-CREATE TABLE Hotel
-(
-	Beschrijving varchar,
-	Sterren      varchar,
-	MinPrijs     float,
-	Email        varchar,
-	H_ID         varchar,
-	Naam         varchar NOT NULL,
-	Regio        varchar NOT NULL,
-	Gemeente     varchar NOT NULL,
-	Postcode     varchar NOT NULL,
-	Huisnummer   varchar NOT NULL,
-	Straat       varchar NOT NULL,
-	PRIMARY KEY (H_ID) -- TODO
-);
-
 CREATE TABLE inschrijving --TODO
 (
 	emailpersoon         varchar,
 	postcode             varchar,
 	naam                 varchar,
-	aantal               integer,
+	aantal               integer NOT NULL,
 	bevestigd            boolean,
 	tijdstip             timestamp,
 	persoon_doof         integer,
@@ -76,8 +78,44 @@ CREATE TABLE inschrijving --TODO
 			REFERENCES ToeristischeActiviteit (postcode, activiteitnaam),
 	CONSTRAINT fk_persoon
 		FOREIGN KEY (emailpersoon)
-			REFERENCES Persoon (email)
+			REFERENCES Persoon (email),
+	CONSTRAINT valid_aantal_check
+		CHECK (
+				persoon_doof <= aantal AND
+				persoon_slechthorend <= aantal AND
+				persoon_mentaal <= aantal AND
+				persoon_motorisch <= aantal AND
+				persoon_blind <= aantal AND
+				persoon_slechtziend <= aantal AND
+				persoon_autisme <= aantal
+			),
+	CONSTRAINT check_valid_postcode
+		CHECK (postcode >= 1),
+	CONSTRAINT valid_aantal_totaal_check
+		CHECK (aantal >= 1)
 
+);
+
+CREATE TABLE Hotel
+(
+	Beschrijving varchar,
+	Sterren      varchar,
+	MinPrijs     float,
+	Email        varchar,
+	H_ID         varchar,
+	Naam         varchar NOT NULL,
+	Regio        varchar NOT NULL,
+	Gemeente     varchar NOT NULL,
+	Postcode     varchar NOT NULL,
+	Huisnummer   varchar NOT NULL,
+	Straat       varchar NOT NULL,
+	PRIMARY KEY (H_ID),-- TODO
+	CONSTRAINT check_valid_prijs
+		CHECK (MinPrijs >= 0),
+	CONSTRAINT check_valid_huisnr
+		CHECK (huisnummer >= 1),
+	CONSTRAINT check_valid_postcode
+		CHECK (postcode >= 1)
 );
 
 
@@ -89,7 +127,7 @@ CREATE TABLE boekingen
 	tijdstip     timestamp,
 	begintijd    date,
 	eindtijd     date,
-	aantal       integer,
+	aantal       integer NOT NULL,
 	bevestigd    boolean,
 	PRIMARY KEY (emailpersoon, hotel_id, begintijd),
 	CONSTRAINT fk_hotel
@@ -97,7 +135,9 @@ CREATE TABLE boekingen
 			REFERENCES Hotel (H_ID),
 	CONSTRAINT fk_persoon
 		FOREIGN KEY (emailpersoon)
-			REFERENCES Persoon (email)
+			REFERENCES Persoon (email),
+	CONSTRAINT valid_aantal_totaal_check
+		CHECK (aantal >= 1)
 );
 
 CREATE TABLE kortingen
@@ -112,7 +152,10 @@ CREATE TABLE kortingen
 			REFERENCES Hotel (H_ID),
 	CONSTRAINT fk_toeristischeactiviteit
 		FOREIGN KEY (activiteitnaam, activiteit_postcode)
-			REFERENCES ToeristischeActiviteit (activiteitnaam, postcode)
+			REFERENCES ToeristischeActiviteit (activiteitnaam, postcode),
+	CONSTRAINT valid_percent_check
+		CHECK (percentage_korting <= 100 AND percentage_korting >= 0)
+
 
 );
 
@@ -120,9 +163,9 @@ CREATE SEQUENCE openingstijd_id_seq;
 
 CREATE TABLE Openingstijd
 (
-	openingstijd_ID integer DEFAULT nextval('openingstijd_id_seq'),
+	openingstijd_ID integer DEFAULT NEXTVAL('openingstijd_id_seq'),
 	Starttijd       timestamp,
-	duur           interval,
+	duur            interval,
 	Postcode        varchar,
 	Naam            varchar,
 	PRIMARY KEY (openingstijd_ID),
@@ -130,7 +173,7 @@ CREATE TABLE Openingstijd
 		FOREIGN KEY (Postcode, Naam)
 			REFERENCES ToeristischeActiviteit (Postcode, activiteitnaam),
 	CONSTRAINT validTijdCheck
-		CHECK (starttijd + duur  > Starttijd)
+		CHECK (starttijd + duur > Starttijd)
 );
 
 

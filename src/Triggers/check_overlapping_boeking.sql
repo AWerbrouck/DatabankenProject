@@ -13,7 +13,6 @@ BEGIN
 				boekingen b
 			WHERE
 				  b.emailpersoon = new.emailpersoon
-			  AND b.hotel_id = new.hotel_id
 			  AND b.begintijd <= new.begintijd
 			  AND new.eindtijd <= b.eindtijd
 		) THEN
@@ -27,9 +26,8 @@ BEGIN
 				boekingen b
 			WHERE
 				  b.emailpersoon = new.emailpersoon
-			  AND b.hotel_id = new.hotel_id
 			  AND b.begintijd <= new.begintijd
-			  AND new.begintijd <= new.eindtijd
+			  AND new.begintijd <= b.eindtijd
 		) THEN
 		RAISE EXCEPTION 'boekingen mogen niet overlappen';
 	END IF;
@@ -41,7 +39,6 @@ BEGIN
 				boekingen b
 			WHERE
 				  b.emailpersoon = new.emailpersoon
-			  AND b.hotel_id = new.hotel_id
 			  AND b.begintijd <= new.eindtijd
 			  AND new.eindtijd <= b.eindtijd
 		) THEN

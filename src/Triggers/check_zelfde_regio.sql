@@ -21,6 +21,11 @@ BEGIN
 		) THEN
 		RAISE EXCEPTION 'Hotel kan geen korting geven op een activiteit in een andere regio';
 	END IF;
+	IF
+	    new.percentage_korting::integer > '100'::integer
+	    THEN
+		RAISE EXCEPTION 'Hotel kan niet meer dan 100 procent korting geven op een activiteit';
+		end if;
 	RETURN new;
 END;
 $BODY$
