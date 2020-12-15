@@ -24,7 +24,7 @@ CREATE TABLE ToeristischeActiviteit
 (
 	toeristische_regio              varchar NOT NULL,
 	activiteittype                  varchar NOT NULL,
-	PrijsPerPersoon                 varchar NOT NULL,
+	PrijsPerPersoon                 float NOT NULL,
 	straat                          varchar,
 	postcode                        varchar,
 	activiteitnaam                  varchar,
@@ -41,10 +41,6 @@ CREATE TABLE ToeristischeActiviteit
 	activiteit_toegang_slechtziend  boolean,
 	activiteit_toegang_autisme      boolean,
 	PRIMARY KEY (postcode, activiteitnaam),
-	CONSTRAINT check_valid_postcode
-		CHECK (postcode >= 1),
-	CONSTRAINT check_valid_huisnr
-		CHECK (huisnummer >= 1),
 	CONSTRAINT check_valid_prijs
 		CHECK (prijsperpersoon >= 0)
 );
@@ -89,8 +85,6 @@ CREATE TABLE inschrijving --TODO
 				persoon_slechtziend <= aantal AND
 				persoon_autisme <= aantal
 			),
-	CONSTRAINT check_valid_postcode
-		CHECK (postcode >= 1),
 	CONSTRAINT valid_aantal_totaal_check
 		CHECK (aantal >= 1)
 
@@ -111,11 +105,7 @@ CREATE TABLE Hotel
 	Straat       varchar NOT NULL,
 	PRIMARY KEY (H_ID),-- TODO
 	CONSTRAINT check_valid_prijs
-		CHECK (MinPrijs >= 0),
-	CONSTRAINT check_valid_huisnr
-		CHECK (huisnummer >= 1),
-	CONSTRAINT check_valid_postcode
-		CHECK (postcode >= 1)
+		CHECK (MinPrijs >= 0)
 );
 
 
@@ -135,9 +125,7 @@ CREATE TABLE boekingen
 			REFERENCES Hotel (H_ID),
 	CONSTRAINT fk_persoon
 		FOREIGN KEY (emailpersoon)
-			REFERENCES Persoon (email),
-	CONSTRAINT valid_aantal_totaal_check
-		CHECK (aantal >= 1)
+			REFERENCES Persoon (email)
 );
 
 CREATE TABLE kortingen
@@ -145,7 +133,7 @@ CREATE TABLE kortingen
 	activiteitnaam      varchar,
 	activiteit_postcode varchar,
 	hotel_id            varchar,
-	percentage_korting  varchar,
+	percentage_korting  integer,
 	PRIMARY KEY (activiteitnaam, activiteit_postcode, hotel_id),
 	CONSTRAINT fk_hotel
 		FOREIGN KEY (hotel_id)

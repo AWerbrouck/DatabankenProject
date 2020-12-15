@@ -9,7 +9,7 @@ INSERT INTO
 	(SELECT DISTINCT
 		 toeristische_regio,
 		 activiteittype,
-		 activiteit_prijs,
+		 activiteit_prijs::float,
 		 straat,
 		 postcode,
 		 activiteitnaam,
@@ -132,7 +132,7 @@ INSERT INTO
 
 INSERT INTO
 	kortingen(activiteitnaam, activiteit_postcode, hotel_id, percentage_korting)
-	(SELECT DISTINCT activiteitnaam, activiteit_postcode, hotelid, percentage_korting FROM super_kortingen);
+	(SELECT DISTINCT activiteitnaam, activiteit_postcode, hotelid, percentage_korting::integer FROM super_kortingen);
 
 
 

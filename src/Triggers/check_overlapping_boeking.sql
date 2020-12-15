@@ -13,10 +13,10 @@ BEGIN
 				boekingen b
 			WHERE
 				  b.emailpersoon = new.emailpersoon
-			  AND b.begintijd <= new.begintijd
-			  AND new.eindtijd <= b.eindtijd
+			  AND b.begintijd < new.begintijd
+			  AND new.eindtijd < b.eindtijd
 		) THEN
-		RAISE EXCEPTION 'boekingen mogen niet overlappen';
+		RAISE EXCEPTION 'boekingen mogen niet overlappen % % %', new.emailpersoon, new.begintijd, new.eindtijd;
 	END IF;
 
 	IF EXISTS(
@@ -26,10 +26,10 @@ BEGIN
 				boekingen b
 			WHERE
 				  b.emailpersoon = new.emailpersoon
-			  AND b.begintijd <= new.begintijd
-			  AND new.begintijd <= b.eindtijd
+			  AND b.begintijd < new.begintijd
+			  AND new.begintijd < b.eindtijd
 		) THEN
-		RAISE EXCEPTION 'boekingen mogen niet overlappen';
+		RAISE EXCEPTION 'boekingen mogen niet overlappen % % %', new.emailpersoon, new.begintijd, new.eindtijd;
 	END IF;
 
 	IF EXISTS(
@@ -39,10 +39,10 @@ BEGIN
 				boekingen b
 			WHERE
 				  b.emailpersoon = new.emailpersoon
-			  AND b.begintijd <= new.eindtijd
-			  AND new.eindtijd <= b.eindtijd
+			  AND b.begintijd < new.eindtijd
+			  AND new.eindtijd < b.eindtijd
 		) THEN
-		RAISE EXCEPTION 'boekingen mogen niet overlappen';
+		RAISE EXCEPTION 'boekingen mogen niet overlappen% % %', new.emailpersoon, new.begintijd, new.eindtijd;
 	END IF;
 
 	RETURN new;
