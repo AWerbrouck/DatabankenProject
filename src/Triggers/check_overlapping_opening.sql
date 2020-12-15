@@ -13,7 +13,7 @@ BEGIN
 				 ( NEW.starttijd < a.starttijd + a.duur)AND
 				 ( a.naam = NEW.naam )AND
 				 a.postcode = new.postcode ) THEN
-		RAISE EXCEPTION 'naam%', NEW.naam;
+		RAISE EXCEPTION 'openingstijden van zelfde activiteiten mogen niet overlappen';
 	END IF;
 
 	IF EXISTS(SELECT
@@ -37,7 +37,7 @@ BEGIN
 				AND ( NEW.starttijd + NEW.duur > a.starttijd + a.duur )
 				AND ( a.naam = NEW.naam )
 				AND ( a.postcode = new.postcode )) THEN
-		RAISE EXCEPTION 'openingstijden van zelfde activiteiten mogen niet overlappen', NEW.naam;
+		RAISE EXCEPTION 'openingstijden van zelfde activiteiten mogen niet overlappen';
 	END IF;
 
 	RETURN NEW;
